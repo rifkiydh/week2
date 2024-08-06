@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: #F7F8FA;
+        }
+
+        nav {
+            background-color: #FE4E30;
+            display: flex;
+            justify-content: space-between;
+            padding: 21px;
+            align-items: center;
+            box-shadow: 0px 0px 5px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .left ul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+        }
+
+        .left ul li a {
+            text-decoration: none;
+            padding: 20px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            color: black;
+        }
+
+        .right a {
+            display: flex;
+            align-items: center;
+            background-color: black;
+            color: #F7F8FA;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            width: 80px;
+            float: right;
+            margin-top: 5px;
+            background-color: #F7F8FA;
+            color: black;
+        }
+
+        .right {
+            width: 200px;
+            align-items: center;
+        }
+
+        .right button {
+            display: none;
+            background-color: #FE4E30;
+            padding: 10px;
+            border: 1px solid #FE4E30;
+            color: black;
+        }
+
+        /* Hamburger */
+        .humberger-list {
+            display: none;
+            flex-direction: column;
+            background-color: #FE4E30;
+        }
+
+        .humberger-list.active {
+            display: flex;
+        }
+
+        .humberger-list a {
+            margin: auto;
+            padding: 10px 0;
+            text-decoration: none;
+            color: black;
+            font-weight: 700;
+        }
+
+        .humberger-list a:hover {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        /* Formulir CSS */
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: 900;
+        }
+
+        form {
+            width: 500px;
+            margin: 50px auto;
+            border-radius: 15px;
+            background-color: #ffffff;
+            padding: 50px;
+            box-shadow: 0px 0px 3px;
+        }
+
+        label {
+            font-weight: 900;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        input:hover, select:hover, textarea:hover {
+            box-shadow: 0px 0px 5px;
+        }
+
+        form div {
+            margin: 30px 0;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        button {
+            color: #ffffff;
+            cursor: pointer;
+            float: right;
+            background-color: black;
+            padding: 5px 20px;
+            border-radius: 12px;
+            font-weight: 900;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.2);
+        }
+
+        @media screen and (max-width: 1181px) {
+            form {
+                width: 90%;
+            }
+
+            .right a {
+                display: none;
+            }
+
+            .left a {
+                display: none;
+            }
+
+            .humberger-list {
+                display: none;
+            }
+
+            .right button {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="left">
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./project.html">About</a></li>
+                <li><a href="./testimonial.html">Testimonial</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <a href="./form.html">Contact me</a>
+            <button onclick="btnHmbrgr()">☰</button>
+        </div>
+    </nav>
+    <div id="humberger-list" class="humberger-list">
+        <a href="./index.html">Home</a>
+        <a href="./project.html">Project</a>
+        <a href="./testimonial.html">Testimonial</a>
+        <a href="./testimonial.html">Contact</a>
+    </div>
+    <form>
+        <h1>Get In Touch</h1>
+        <div>
+            <label for="nameInput">Name</label>
+            <input type="text" id="nameInput" name="name" placeholder="your name">
+        </div>
+        <div>
+            <label for="emailInput">Email</label>
+            <input type="text" id="emailInput" name="email" placeholder="your email">
+        </div>
+        <div>
+            <label for="numberInput">Number</label>
+            <input type="number" id="numberInput" name="number" placeholder="your number">
+        </div>
+        <div>
+            <label for="position">Position</label>
+            <select id="position" name="position">
+                <option hidden>Select Option</option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Fullstack Developer</option>
+            </select>
+        </div>
+        <div>
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="content"></textarea>
+        </div>
+        <div class="tmbl-submit">
+            <button type="button" onclick="getData()">Submit</button>
+        </div>
+    </form>
+    <script>
+        function getData() {
+            let name = document.getElementById("nameInput").value;
+            let email = document.getElementById("emailInput").value;
+            let number = document.getElementById("numberInput").value;
+            let position = document.getElementById("position").value;
+            let address = document.getElementById("address").value;
+            let formData = {name, email, number, position, address};
+
+            if (name === "") {
+                alert("Your name is blank");
+                return;
+            }
+            if (email === "") {
+                alert("Your email is blank");
+                return;
+            }
+            if (number === "") {
+                alert("Your number is blank");
+                return;
+            }
+            if (position === "Select Option") {
+                alert("Your position is blank");
+                return;
+            }
+            if (address === "") {
+                alert("Your address is blank");
+                return;
+            }
+
+            console.log(formData);
+
+            let myEmail = "rifkiydh@gmail.com";
+            let subject = "Introduction";
+            let a = document.createElement("a");
+            a.href = `mailto:${myEmail}?subject=${subject}&body=Hello, my name is ${name}`;
+            a.click();
+
+            // Clear form
+            document.getElementById("nameInput").value = "";
+            document.getElementById("emailInput").value = "";
+            document.getElementById("numberInput").value = "";
+            document.getElementById("position").value = "Select Option";
+            document.getElementById("address").value = "";
+        }
+
+        function btnHmbrgr() {
+            const element = document.getElementById("humberger-list");
+            element.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
